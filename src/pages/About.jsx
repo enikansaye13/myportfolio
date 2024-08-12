@@ -21,7 +21,7 @@ const About = () => {
         <div className='mt-16 flex flex-wrap gap-12'>
           {skills.map((skill) => {
             return(
-            <div className='block-container w-20 h-20'>
+            <div className='block-container w-12 h-12 md:w-20 md:h-20'>
               <div className='btn-back rounded-xl' />
               <div className=' btn-front rounded-xl flex justify-center items-center'>
                 <img 
