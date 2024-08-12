@@ -12,8 +12,7 @@ dist
 dist-ssr
 *.local
 .env.local
-src/assets/3d/
-src/assets/icons/
+
 # src\assets\sakura.mp3
 
 # Editor directories and files
