@@ -14,7 +14,7 @@ const Home = () => {
   const audioRef = useRef(new Audio(sakura));
   audioRef.current.volume = 0.5;
   audioRef.current.loop = true;
-  const [isRotating, setIsRotating] = useState(false);
+  const [isRotating, setIsRotating] = useState(true);
   const [currentStage, setCurrentStage] = useState(1);
   const [isPlayingMusic, SetIsPlayinMusic] = useState(false);
 
@@ -27,6 +27,18 @@ const Home = () => {
       audioRef.current.pause();
     };
   }, [isPlayingMusic]);
+
+  useEffect(() => {
+    // Set the time duration for changing the stage (e.g., every 5 seconds)
+    const intervalDuration = 5000; // 5000 ms = 5 seconds
+
+    const intervalId = setInterval(() => {
+        setCurrentStage(prevStage => (prevStage % 4) + 1); // Assuming you have 3 stages
+    }, intervalDuration);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+}, []); // Empty dependency array means this effect runs once on mount
 
   const adjustIslandScreenSize = () => {
     let screenScale, screenPosition;
@@ -72,7 +84,14 @@ const Home = () => {
       >
         {/* suspense is use to display the loading screen */}
         <Suspense fallback={<Loader />}>
-                  <Sky isRotating={isRotating} />
+                  <Sky 
+                  isRotating={isRotating} 
+                  setIsRotating={setIsRotating}
+                  setCurrentStage={setCurrentStage}
+                  position={islandPosition}
+                  rotation={[0.1, 4.7077, 0]}
+                  // scale={islandScale}
+                  />
 
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <ambientLight intensity={0.5} />
