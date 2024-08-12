@@ -12,7 +12,8 @@ dist
 dist-ssr
 *.local
 .env.local
-# src/assets/
+src/assets/3d/
+src/assets/icons/
 
 # Editor directories and files
 .vscode/*
